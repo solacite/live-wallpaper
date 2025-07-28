@@ -100,8 +100,8 @@ class WallpaperGenerator:
             draw.line([(0, y), (self.screen_width, y)], fill=interpolated_rgb)
 
         if quote_text:
-            text_margin_x = int(self.screen_width * 0.1)
-            text_margin_y = int(self.screen_height * 0.1)
+            text_margin_x = int(self.screen_width * 0.05)
+            text_margin_y = int(self.screen_height * 0.05)
 
             text_max_width = self.screen_width - (2 * text_margin_x)
             text_max_height = self.screen_height - (2 * text_margin_y)
@@ -110,6 +110,8 @@ class WallpaperGenerator:
             wrapped_lines, font, start_y = self.get_text_size_and_position(
                 draw, initial_lines_from_quote, text_max_width, text_max_height
             )
+
+            start_y = text_margin_y
 
             current_y = start_y
             for line in wrapped_lines:
