@@ -1,0 +1,2 @@
+# live-wallpaper
+quote rng
