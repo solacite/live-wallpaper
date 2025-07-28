@@ -40,3 +40,35 @@ class ColorApiClient:
         except (requests.exceptions.RequestException, ValueError, KeyError, json.JSONDecodeError) as e:
             print(f"error fetching colors from API: {e}.")
             return "#3498db", "#8e44ad"
+
+class QuoteApiClient:
+    def __init__(self):
+        self.api_url = 'https://zenquotes.io/api/random'
+
+    def get_random_quote(self):
+        print("fetching a random quote from zen API...")
+        try:
+            response = requests.get(self.api_url)
+            response.raise_for_status()
+
+            data = response.json()
+            
+            if data and isinstance(data, list) and len(data) > 0:
+                quote_obj = data[0]
+                quote_content = quote_obj.get('q', '')
+                quote_author = quote_obj.get('a', 'Unknown')
+
+                if quote_content:
+                    formatted_quote = f"“{quote_content}”\n– {quote_author}"
+                    print(f"QuoteApiClient: Successfully fetched quote: '{quote_content[:50]}...'")
+                    return formatted_quote
+                else:
+                    print("QuoteApiClient: API returned empty content. Falling back to default quote.")
+                    raise ValueError("Empty quote content from API")
+            else:
+                print("QuoteApiClient: API returned no quotes. Falling back to default quote.")
+                raise ValueError("No quotes returned from API")
+        except (requests.exceptions.RequestException, ValueError, KeyError, json.JSONDecodeError) as e:
+                print(f"error fetching quote from API: {e}")
+                return "womp womp"
+
