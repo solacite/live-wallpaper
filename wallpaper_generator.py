@@ -7,9 +7,9 @@ class WallpaperGenerator:
         user32 = ctypes.windll.user32
         self.screen_width = user32.GetSystemMetrics(0)
         self.screen_height = user32.GetSystemMetrics(1)
-        print(f"WallpaperGenerator initialized. Detected screen resolution: {self.screen_width}x{self.screen_height}")
+        print(f"wallpaperGenerator initialized. detected screen resolution: {self.screen_width}x{self.screen_height}")
 
-        self.font_path = "arial.ttf"
+        self.font_path = "Lexend-Regular.ttf"
         try:
             ImageFont.truetype(self.font_path, 1)
         except IOError:
@@ -44,7 +44,7 @@ class WallpaperGenerator:
             lines.append(' '.join(current_line))
         return lines
 
-    def get_text_size_and_position(self, draw, text_lines, max_width, max_height, min_font_size=20, max_font_size=100):
+    def get_text_size_and_position(self, draw, text_lines, max_width, max_height, min_font_size=20, max_font_size=40):
         best_font_size = min_font_size
         best_lines = []
         final_font = None
