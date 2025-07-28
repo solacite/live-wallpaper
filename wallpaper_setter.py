@@ -21,10 +21,9 @@ def set_wallpaper(image):
     )
 
     if result:
-        print(f"Wallpaper set to: {image}")
+        print(f"wallpaper set to: {image}")
         return True
     else:
-        print(f"Failed to set wallpaper. Error code: {ctypes.GetLastError()}")
+        print(f"failed to set wallpaper. Error code: {ctypes.GetLastError()}")
         return False
-
-set_wallpaper("example.png")
+    
